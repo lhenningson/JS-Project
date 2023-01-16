@@ -4,34 +4,98 @@ let ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
 
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, cnv.width, cnv.height);
+let state = "gameon";
 
-ctx.fillStyle = "green";
-ctx.fillRect(0, 450, 800, 150);
+let mouseispressed = false
 
-ctx.fillStyle = "black";
-ctx.fillRect(0, 0, 800, 450);
+window.addEventListener("load", draw);
 
-ctx.fillStyle = "white";
-ctx.fillRect(650, 150, 10, 300);
+document.addEventListener("mousedown", mousedownhandler);
 
-ctx.fillStyle = "white";
-ctx.fillRect(150, 150, 10, 300);
+function
 
-ctx.fillStyle = "white";
-ctx.fillRect(160, 150, 490, 10);
+function draw() {
+    if (state === "start") {
+        drawstart();
+    } else if (state === "gameon") {
+        drawgame();
+        movegoalie();
 
-ctx.fillStyle = "grey";
-ctx.fillRect(50, 100, 10, 350);
+    } else if (state === "gameover") {
+        drawover();
+    }
 
-ctx.fillStyle = "grey";
-ctx.fillRect(750, 100, 10, 350);
+}
+let goalie = {
+    x: 380,
+    y: 300,
+    w: 50,
+    h: 150,
+    speed: 0,
+    accel: 0.9
+}
+function drawstart() {
+    basedraw();
+}
+function drawgame() {
+    basedraw();  
+}
+function drawover() {
+    basedraw();
+}
 
-ctx.fillStyle = "white";
-ctx.fillRect(740, 100, 30, 30);
+function basedraw() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+    
+    ctx.fillStyle = "green";
+    ctx.fillRect(0, 450, 800, 150);
+    
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, 800, 450);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(650, 150, 10, 300);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(150, 150, 10, 300);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(160, 150, 490, 10);
+    
+    ctx.fillStyle = "grey";
+    ctx.fillRect(50, 100, 10, 350);
+    
+    ctx.fillStyle = "grey";
+    ctx.fillRect(750, 100, 10, 350);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(740, 100, 30, 30);
+    
+    ctx.fillStyle = "white";
+    ctx.fillRect(40, 100, 30, 30);
+    
+    ctx.fillStyle = "red";
+    ctx.fillRect(goalie.x, goalie.y, goalie.w, goalie.h);
+    
+    
+}
+function movegoalie() {
+    if
+    goalie.speed += -1;
 
-ctx.fillStyle = "white";
-ctx.fillRect(40, 100, 30, 30);
+    goalie.x += goalie.speed;
+}
 
+
+
+function display(event) {
+    let X = event.clientX;
+    let Y = event.clientY;
+    
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.arc(X -= 5, Y -= 55, 20, 0, 2 * Math.PI);
+    ctx.fill();
+}
 
