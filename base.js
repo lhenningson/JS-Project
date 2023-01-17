@@ -4,7 +4,7 @@ let ctx = cnv.getContext("2d");
 cnv.width = 800;
 cnv.height = 600;
 
-let state = "gameon";
+let state = "start";
 
 let mouseispressed = false
 
@@ -12,7 +12,9 @@ window.addEventListener("load", draw);
 
 document.addEventListener("mousedown", mousedownhandler);
 
-function
+function mousedownhandler() {
+    movegoalie();
+}
 
 function draw() {
     if (state === "start") {
@@ -81,8 +83,9 @@ function basedraw() {
     
 }
 function movegoalie() {
-    if
+    if (state === "gameon") {
     goalie.speed += -1;
+}
 
     goalie.x += goalie.speed;
 }
